@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.tsbuildinfo
+lib/types/*.map
+.idea/
+.vscode/
+.dsh-host/

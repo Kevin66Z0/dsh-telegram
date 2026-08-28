@@ -1,0 +1,18 @@
+# dsh-telegram standalone bundle patch — inserted as ONE layer over the
+# profile root when this package is added to the profile's bundle stack
+# (`dsh plugin --profile <name> add <this-package>`). The row is id-addressed,
+# so an upper layer (profile cordis.patch.yml or the settings document) can
+# override its config fields — the last write wins per row, per field.
+#
+# 敏感字段 botToken 明文不落地: 经 !!js process.env.TELEGRAM_BOT_TOKEN 引用,
+# 值放 dsh 进程环境或 $DSH_HOME/.env (0600) 注入, 见部署实例 CLAUDE.md 的
+# "敏感变量存储与注入(插件开发规范)"。
+# allowChatIds 默认空(拒绝一切聊天): 由 settings.yaml 的 `telegram:` 段
+# (Web 设置页 Plugins → Telegram 卡片)或上层 patch 覆盖, 热加载免重启。
+# proxy 省略时回退 ALL_PROXY / HTTPS_PROXY 环境变量, 直连可达时无需配置。
+- insert:
+    - id: telegram
+      name: '@deepseek-ai/dsh-host-telegram'
+      config:
+        botToken: !!js process.env.TELEGRAM_BOT_TOKEN
+        allowChatIds: []

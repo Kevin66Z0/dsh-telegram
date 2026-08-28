@@ -1,0 +1,7 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record.
+# NOTE: this standalone repo maintains both READMEs locally (they extend the monorepo
+# originals with the Install/Demo sections); hashes below are this repos current state.
+README.md: db7677e9b39892ade4a06fdce492d66c27638ab0
+README.zh.md: e248c4ff0e594808f2266d6e69e104c9e9599517
